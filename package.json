@@ -1,7 +1,7 @@
 {
-  "name": "contactKeeper",
+  "name": "accountKeeper",
   "version": "1.0.0",
-  "description": "Contact Manager App",
+  "description": "Account Manager App",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
