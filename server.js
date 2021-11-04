@@ -1,5 +1,5 @@
-const express = require('express');
-const connectDB = require('./config/db');
+const express = require("express");
+const connectDB = require("./config/db");
 
 const app = express();
 
@@ -7,14 +7,16 @@ const app = express();
 // connectDB();
 
 //  Init Middleware
-app.use(express.json({ extended: false}));
+app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.json({msg: "Welcome to the Banking-Backend..."}));
+app.get("/", (req, res) =>
+  res.json({ msg: "Welcome to the Banking-Backend..." })
+);
 
 // Define Routes
-app.use('/api/users', require('./routes/users'));
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/accounts', require('./routes/accounts'));
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/accounts", require("./routes/accounts"));
 
 const PORT = process.env.PORT || 2520;
 
