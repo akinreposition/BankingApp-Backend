@@ -1,9 +1,16 @@
 import React from 'react'
+import Account from '../layouts/Accounts/Account';
 
-export const Home = () => {
+const Home = () => {
     return (
-        <div>
-            <hi>Home</hi>
+        <div className="grid-2">
+            <div>
+                {/* {Account Form} */}
+            </div>
+            <div>
+                <Account />
+            </div>
         </div>
     )
 }
+export default Home;

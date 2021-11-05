@@ -1,5 +1,5 @@
 import React from 'react'
-import { fas, fa,id,card,alt } from '@fortawesome/react-fontawesome'
+// import { fas, fa,id,card,alt } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types';
 import{ Link } from 'react-router-dom';
 
