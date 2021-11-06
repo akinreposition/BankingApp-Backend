@@ -6,11 +6,12 @@ import AccountContext from '../../../context/Account/accountContext';
 const AccountItem = ({ account }) => {
     const accountContext = useContext(AccountContext);
 
-    const { deleteAccount } = accountContext;
+    const { deleteAccount, setCurrent, clearCurrent } = accountContext;
     const { id, bankName, accountName, accountNumber, phone, email, type } = account;
 
     const onDelete = () => {
         deleteAccount(id);
+        clearCurrent();
     }
     return (
         <div className="card bg-light">
@@ -45,7 +46,7 @@ const AccountItem = ({ account }) => {
                     </li>
                 )}
             </ul>
-            <button className="btn btn-dark btn-sm">Edit</button>
+            <button className="btn btn-dark btn-sm" onClick={() => setCurrent(account) }>Edit</button>
             <button className="btn btn-danger btn-sm" onClick={onDelete}>Delete</button>  
         </div>
     )

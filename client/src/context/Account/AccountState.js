@@ -43,7 +43,8 @@ import accountContext from './accountContext';
                 email: 'adigungewn@mail.com',
                 type: 'savings'
             }
-         ]
+         ],
+         current: null
      }
 
      const [state, dispatch] = useReducer(accountReducer, initialState);
@@ -58,12 +59,21 @@ import accountContext from './accountContext';
     const deleteAccount = id => {
         dispatch({ type: DELETE_ACCOUNT, payload: id });
     };
+
     // Set current Account
+    const setCurrent = account => {
+        dispatch({ type: SET_CURRENT, payload: account });
+    };
 
     // clear current Account
+    const clearCurrent = () => {
+        dispatch({ type: CLEAR_CURRENT });
+    };
 
     // Update Account
-
+    const updateAccount = account => {
+        dispatch({ type: UPDATE_ACCOUNT, payload: account });
+    };
     // Filter Account
 
     // Clear Filter
@@ -72,8 +82,12 @@ import accountContext from './accountContext';
         <AccountContext.Provider 
          value= {{
              accounts: state.accounts,
+             current: state.current,
              addAccount,
-             deleteAccount
+             deleteAccount,
+             setCurrent,
+             clearCurrent,
+             updateAccount
          }}
          >
             {props.children}

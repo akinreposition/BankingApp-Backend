@@ -15,11 +15,27 @@ export const accountReducer = (state, action) => {
         ...state,
         accounts: [...state.accounts, action.payload],
       };
-      case DELETE_ACCOUNT:
+    case DELETE_ACCOUNT:
           return{
               ...state,
               accounts: state.accounts.filter(account => account.id !== action.payload)
-          }
+          };
+    case SET_CURRENT:
+        return {
+            ...state,
+            current: action.payload
+        }
+    case CLEAR_CURRENT:
+        return {
+            ...state,
+            current: null
+        }
+    case UPDATE_ACCOUNT:
+        return {
+            ...state,
+            accounts: state.accounts.map(account => 
+                account.id === action.payload.id ? action.payload : account )
+        }
     default:
       return state;
   }
