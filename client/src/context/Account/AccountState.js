@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import AccountContext from './accountContext';
-import accountReducer from './AccountReducer';
+import {accountReducer} from './AccountReducer';
 import { 
     ADD_ACCOUNT,
     DELETE_ACCOUNT,
@@ -11,6 +11,7 @@ import {
     FILTER_ACCOUNT,
     CLEAR_FILTER
  } from "../types";
+import accountContext from './accountContext';
 
  const AccountState = props => {
      const initialState  = {
@@ -48,7 +49,10 @@ import {
      const [state, dispatch] = useReducer(accountReducer, initialState);
 
      // Add Account
-
+     const addAccount = account => {
+         accountContext.id = uuidv4();
+         dispatch({ type: ADD_ACCOUNT, payload: account});
+     };
     //  Delete Account
 
     // Set current Account
@@ -64,7 +68,8 @@ import {
     return (
         <AccountContext.Provider 
          value= {{
-             accounts: state.accounts
+             accounts: state.accounts,
+             addAccount,
          }}
          >
             {props.children}

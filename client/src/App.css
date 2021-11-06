@@ -3,6 +3,7 @@
 /* Global Styles */
 :root {
   --primary-color: #003699;
+  --primary-color1: #f500a375;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -280,6 +281,14 @@ img {
   border: #ccc solid 1px;
 }
 
+.btn-pink,
+.bg-pink,
+.badge-pink,
+.alert-pink {
+  background: #f500a375;
+  color: #fff
+}
+
 .btn:hover {
   opacity: 0.8;
 }
@@ -313,7 +322,7 @@ textarea {
   display: block;
   width: 100%;
   padding: 0.4rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: 1px solid #ccc;
 }
 
