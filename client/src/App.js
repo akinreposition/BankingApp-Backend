@@ -14,8 +14,8 @@ const App = () => {
           <Navbar/>
           <div className="container">
             <Routes>
-              <Route exact path='/' element={Home} />
-              <Route exact path='/about' element={About} />
+              <Route path='/' element={<Home/>} />
+              <Route path='/about' element={<About/>} />
             </Routes>
           </div>
         </Fragment>

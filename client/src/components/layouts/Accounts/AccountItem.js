@@ -11,18 +11,13 @@ const AccountItem = ({ account }) => {
                 style={{ float: 'right'}}
                 className={'badge ' + (type === 'current' ? 
                 'badge-success' : 'badge-primary')}>
-                    {type.charat(0).toUpperCase() + type.slice(1)}
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
                     </span>
             </h3>
             <ul className="list">
                 {bankName && (
                     <li>
                         <i className='fas fa-bank' /> {bankName}
-                    </li>
-                )}
-                {accountName && (
-                    <li>
-                        <i className='fas fa-contact' /> {accountName}
                     </li>
                 )}
                 {accountNumber && (

@@ -2,7 +2,7 @@ import React, { Fragment, useContext } from 'react'
 import AccountItem from './AccountItem';
 import AccountContext from '../../../context/Account/accountContext';
 
-const Accounts = () => {
+const Account = () => {
     const accountContext = useContext(AccountContext);
 
     const { accounts } = accountContext;
@@ -16,4 +16,4 @@ const Accounts = () => {
     )
 }
 
-export default Accounts
+export default Account;
