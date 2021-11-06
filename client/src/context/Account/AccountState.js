@@ -53,8 +53,11 @@ import accountContext from './accountContext';
          accountContext.id = uuidv4();
          dispatch({ type: ADD_ACCOUNT, payload: account});
      };
-    //  Delete Account
 
+    //  Delete Account
+    const deleteAccount = id => {
+        dispatch({ type: DELETE_ACCOUNT, payload: id });
+    };
     // Set current Account
 
     // clear current Account
@@ -70,6 +73,7 @@ import accountContext from './accountContext';
          value= {{
              accounts: state.accounts,
              addAccount,
+             deleteAccount
          }}
          >
             {props.children}

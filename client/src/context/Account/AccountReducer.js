@@ -15,6 +15,11 @@ export const accountReducer = (state, action) => {
         ...state,
         accounts: [...state.accounts, action.payload],
       };
+      case DELETE_ACCOUNT:
+          return{
+              ...state,
+              accounts: state.accounts.filter(account => account.id !== action.payload)
+          }
     default:
       return state;
   }

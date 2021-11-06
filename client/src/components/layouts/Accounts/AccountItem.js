@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types';
+import AccountContext from '../../../context/Account/accountContext';
+
 
 const AccountItem = ({ account }) => {
-    const { bankName, accountName, accountNumber, phone, email, type } = account;
+    const accountContext = useContext(AccountContext);
+
+    const { deleteAccount } = accountContext;
+    const { id, bankName, accountName, accountNumber, phone, email, type } = account;
+
+    const onDelete = () => {
+        deleteAccount(id);
+    }
     return (
         <div className="card bg-light">
             <h3 className="test-primary text-left">
@@ -37,7 +46,7 @@ const AccountItem = ({ account }) => {
                 )}
             </ul>
             <button className="btn btn-dark btn-sm">Edit</button>
-            <button className="btn btn-danger btn-sm">Delete</button>  
+            <button className="btn btn-danger btn-sm" onClick={onDelete}>Delete</button>  
         </div>
     )
 }
