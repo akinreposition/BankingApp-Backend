@@ -1,45 +1,44 @@
 import React, { useState, useContext, useEffect } from "react";
 import AccountContext from "../../../context/Account/accountContext";
-import { CLEAR_CURRENT } from "../../../context/types";
 
 const AccountForm = () => {
-    const accountContext = useContext(AccountContext);
+  const accountContext = useContext(AccountContext);
 
-    const { addAccount, current, clearCurrent, updateAccount } = accountContext;
+  const { addAccount, current, clearCurrent, updateAccount } = accountContext;
 
-    useEffect(()=> {
-      if(current !== null) {
-        setAccount(current);
-      }else {
-        setAccount({
-          bankName: " ",
-          accountName: " ",
-          accountNumber: " ",
-          phone: " ",
-          email: " ",
-          type: "savings",
+  useEffect(() => {
+    if (current !== null) {
+      setAccount(current);
+    } else {
+      setAccount({
+        bankName: " ",
+        accountName: " ",
+        accountNumber: " ",
+        phone: " ",
+        email: " ",
+        type: "savings",
       });
-      }
-    }, [accountContext, current]);
+    }
+  }, [accountContext, current]);
 
-    const [account, setAccount] = useState({
-      bankName: " ",
-      accountName: " ",
-      accountNumber: " ",
-      phone: " ",
-      email: " ",
-      type: "savings",
-    });
+  const [account, setAccount] = useState({
+    bankName: " ",
+    accountName: " ",
+    accountNumber: " ",
+    phone: " ",
+    email: " ",
+    type: "savings",
+  });
 
   const { bankName, accountName, accountNumber, phone, email, type } = account;
 
   const onChange = (e) =>
     setAccount({ ...account, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    if(current === null) {
-        addAccount(account);
+    if (current === null) {
+      addAccount(account);
     } else {
       updateAccount(account);
     }
@@ -47,13 +46,15 @@ const AccountForm = () => {
   };
 
   const clearAll = () => {
-    clearCurrent ();
+    clearCurrent();
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className="text-primary">{current ? 'Edit Account' : 'Add Account'}</h2>
-      <label htmlFor='Bank Name'>Bank Name</label>
+      <h2 className="text-primary">
+        {current ? "Edit Account" : "Add Account"}
+      </h2>
+      <label>Bank Name</label>
       <input
         type="text"
         required
@@ -61,7 +62,7 @@ const AccountForm = () => {
         value={bankName}
         onChange={onChange}
       />
-      <label htmlFor='Account Name'>Account Name</label>
+      <label>Account Name</label>
       <input
         type="text"
         required
@@ -69,7 +70,7 @@ const AccountForm = () => {
         value={accountName}
         onChange={onChange}
       />
-      <label htmlFor=''>Account Number</label>
+      <label>Account Number</label>
       <input
         type="text"
         required
@@ -77,21 +78,17 @@ const AccountForm = () => {
         value={accountNumber}
         onChange={onChange}
       />
-      <label htmlFor=''>Phone</label>
+      <label>Phone</label>
       <input
         type="text"
+        placeholder="Phone"
         required
         name="phone"
         value={phone}
         onChange={onChange}
       />
-      <label htmlFor='Full Name'>Email</label>
-      <input
-        type="email"
-        name="email"
-        value={email}
-        onChange={onChange}
-      />
+      <label>Email</label>
+      <input type="email" name="email" value={email} onChange={onChange} />
       <h5>Account Type</h5>
       <input
         type="radio"
@@ -120,14 +117,17 @@ const AccountForm = () => {
       <div>
         <input
           type="submit"
-          value={current ? 'Update Account' : 'Add Account'} 
+          value={current ? "Update Account" : "Add Account"}
           className="btn btn-primary btn-block"
         />
       </div>
-      {current && <div>
-        <button className="btn btn-light btn-block" onClick={clearAll}>
-          clear
-        </button></div>}
+      {current && (
+        <div>
+          <button className="btn btn-light btn-block" onClick={clearAll}>
+            clear
+          </button>
+        </div>
+      )}
     </form>
   );
 };

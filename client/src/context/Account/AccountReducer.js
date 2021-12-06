@@ -4,8 +4,8 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_ACCOUNT,
-  FILTER_ACCOUNT,
   CLEAR_FILTER,
+  FILTER_ACCOUNTS,
 } from "../types";
 
 export const accountReducer = (state, action) => {
@@ -36,6 +36,19 @@ export const accountReducer = (state, action) => {
             accounts: state.accounts.map(account => 
                 account.id === action.payload.id ? action.payload : account )
         }
+    case FILTER_ACCOUNTS:
+        return {
+          ...state,
+          filtered: state.accounts.filter(account => {
+            const regex = new RegExp(`${action.payload}`, 'gi');
+            return account.accountName.match(regex) || account.accountNumber.match(regex);
+          })
+        }
+    case CLEAR_FILTER:
+          return {
+              ...state,
+              filtered: null
+          }
     default:
       return state;
   }
