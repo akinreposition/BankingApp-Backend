@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect } from 'react'
-import AccountContext from '../../../context/Account/accountContext';
+import AccountContext from '../../../context/cards/cardContext';
 
-const AccountFilter = () => {
+const CardFilter = () => {
     const accountContext = useContext(AccountContext);
     const text = useRef('');
 
@@ -29,4 +29,4 @@ const AccountFilter = () => {
         </form>
     )
 }
-export default AccountFilter
+export default CardFilter

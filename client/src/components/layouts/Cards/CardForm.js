@@ -1,46 +1,46 @@
 import React, { useState, useContext, useEffect } from "react";
-import AccountContext from "../../../context/Account/accountContext";
+import CardContext from "../../../context/cards/cardContext";
 
-const AccountForm = () => {
-  const accountContext = useContext(AccountContext);
+const CardForm = () => {
+  const cardContext = useContext(CardContext);
 
-  const { addAccount, current, clearCurrent, updateAccount } = accountContext;
+  const { addCard, current, clearCurrent, updateCard } = cardContext;
 
   useEffect(() => {
     if (current !== null) {
-      setAccount(current);
+      setCard(current);
     } else {
-      setAccount({
+      setCard({
         bankName: " ",
-        accountName: " ",
-        accountNumber: " ",
-        phone: " ",
-        email: " ",
-        type: "savings",
+        cardName: " ",
+        cardNumber: " ",
+        ccv: " ",
+        expirationDate: " ",
+        type: "visa",
       });
     }
-  }, [accountContext, current]);
+  }, [cardContext, current]);
 
-  const [account, setAccount] = useState({
+  const [card, setCard] = useState({
     bankName: " ",
-    accountName: " ",
-    accountNumber: " ",
-    phone: " ",
-    email: " ",
-    type: "savings",
+    cardName: " ",
+    cardNumber: " ",
+    ccv: " ",
+    expirationDate: " ",
+    type: "visa",
   });
 
-  const { bankName, accountName, accountNumber, phone, email, type } = account;
+  const { bankName, cardName, cardNumber, ccv, expirationDate, type } = card;
 
   const onChange = (e) =>
-    setAccount({ ...account, [e.target.name]: e.target.value });
+    setCard({ ...card, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
-      addAccount(account);
+      addCard(card);
     } else {
-      updateAccount(account);
+      updateCard(card);
     }
     clearAll();
   };
@@ -52,7 +52,7 @@ const AccountForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <h2 className="text-primary">
-        {current ? "Edit Account" : "Add Account"}
+        {current ? "Edit Card" : "Add Card"}
       </h2>
       <label>Bank Name</label>
       <input
@@ -62,62 +62,62 @@ const AccountForm = () => {
         value={bankName}
         onChange={onChange}
       />
-      <label>Account Name</label>
+      <label>Card Name</label>
       <input
         type="text"
         required
-        name="accountName"
-        value={accountName}
+        name="cardName"
+        value={cardName}
         onChange={onChange}
       />
-      <label>Account Number</label>
+      <label>Card Number</label>
       <input
         type="text"
         required
-        name="accountNumber"
-        value={accountNumber}
+        name="cardNumber"
+        value={cardNumber}
         onChange={onChange}
       />
-      <label>Phone</label>
+      <label>Cvv</label>
       <input
         type="text"
-        placeholder="Phone"
+        placeholder="ccv"
         required
-        name="phone"
-        value={phone}
+        name="ccv"
+        value={ccv}
         onChange={onChange}
       />
-      <label>Email</label>
-      <input type="email" name="email" value={email} onChange={onChange} />
-      <h5>Account Type</h5>
+      <label>Expiration Date</label>
+      <input type="date" name="email" value={expirationDate} onChange={onChange} />
+      <h5>Card Type</h5>
       <input
         type="radio"
         name="type"
-        value="savings"
-        checked={type === "savings"}
+        value="visa"
+        checked={type === "visa"}
         onChange={onChange}
       />{" "}
-      Savings{" "}
+      Visa{" "}
       <input
         type="radio"
         name="type"
-        value="current"
-        checked={type === "current"}
+        value="master"
+        checked={type === "master"}
         onChange={onChange}
       />{" "}
-      Current{" "}
-      <input
+      Master{" "}
+      {/* <input
         type="radio"
         name="type"
         value="Domilicary"
         checked={type === "Domilicary"}
         onChange={onChange}
       />{" "}
-      Domilicary{" "}
+      Domilicary{" "} */}
       <div>
         <input
           type="submit"
-          value={current ? "Update Account" : "Add Account"}
+          value={current ? "Update Card" : "Add Card"}
           className="btn btn-primary btn-block"
         />
       </div>
@@ -131,4 +131,4 @@ const AccountForm = () => {
     </form>
   );
 };
-export default AccountForm;
+export default CardForm;

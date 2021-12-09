@@ -1,9 +1,9 @@
-export const ADD_ACCOUNT = "ADD_ACCOUNT";
-export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+export const ADD_CARD = "ADD_CARD";
+export const DELETE_CARD = "DELETE_CARD";
 export const SET_CURRENT = "SET_CURRENT";
 export const CLEAR_CURRENT = "CLEAR_CURRENT";
-export const UPDATE_ACCOUNT = "UPDATE_ACCOUNT";
-export const FILTER_ACCOUNTS = "FILTER_ACCOUNTS";
+export const UPDATE_CARD = "UPDATE_CARD";
+export const FILTER_CARDS = "FILTER_CARDS";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";

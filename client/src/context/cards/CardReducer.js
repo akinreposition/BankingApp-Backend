@@ -1,24 +1,24 @@
 import {
-  ADD_ACCOUNT,
-  DELETE_ACCOUNT,
+  ADD_CARD,
+  DELETE_CARD,
   SET_CURRENT,
   CLEAR_CURRENT,
-  UPDATE_ACCOUNT,
+  UPDATE_CARD,
   CLEAR_FILTER,
-  FILTER_ACCOUNTS,
+  FILTER_CARDS,
 } from "../types";
 
-export const accountReducer = (state, action) => {
+export const cardReducer = (state, action) => {
   switch (action.type) {
-    case ADD_ACCOUNT:
+    case ADD_CARD:
       return {
         ...state,
-        accounts: [...state.accounts, action.payload],
+        cards: [...state.cards, action.payload],
       };
-    case DELETE_ACCOUNT:
+    case DELETE_CARD:
           return{
               ...state,
-              accounts: state.accounts.filter(account => account.id !== action.payload)
+              cards: state.cards.filter(card => card.id !== action.payload)
           };
     case SET_CURRENT:
         return {
@@ -30,18 +30,18 @@ export const accountReducer = (state, action) => {
             ...state,
             current: null
         }
-    case UPDATE_ACCOUNT:
+    case UPDATE_CARD:
         return {
             ...state,
-            accounts: state.accounts.map(account => 
-                account.id === action.payload.id ? action.payload : account )
+            cards: state.cards.map(card => 
+                card.id === action.payload.id ? action.payload : card )
         }
-    case FILTER_ACCOUNTS:
+    case FILTER_CARDS:
         return {
           ...state,
-          filtered: state.accounts.filter(account => {
+          filtered: state.cards.filter(card => {
             const regex = new RegExp(`${action.payload}`, 'gi');
-            return account.accountName.match(regex) || account.accountNumber.match(regex);
+            return card.cardName.match(regex) || card.accountNumber.match(regex);
           })
         }
     case CLEAR_FILTER:

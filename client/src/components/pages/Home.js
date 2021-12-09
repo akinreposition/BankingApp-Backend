@@ -1,17 +1,17 @@
 import React from 'react'
-import Accounts from '../layouts/Accounts/Accounts';
-import AccountFilter from '../layouts/Accounts/AccountFilter';
-import AccountForm from '../layouts/Accounts/AccountForm';
+import Cards from '../layouts/Cards/Cards';
+import CardFilter from '../layouts/Cards/CardFilter';
+import CardForm from '../layouts/Cards/CardForm';
 
 const Home = () => {
     return (
         <div className="grid-2">
             <div>
-                <AccountFilter />
-                <Accounts />
+                <CardFilter />
+                <Cards />
             </div>
             <div>
-                <AccountForm />
+                <CardForm />
             </div>
         </div>
     )
