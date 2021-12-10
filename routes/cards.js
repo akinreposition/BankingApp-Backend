@@ -4,24 +4,24 @@ const auth = require("../middleware/auth");
 const { check, validationResult } = require("express-validator");
 
 const User = require("../models/User");
-const Account = require("../models/Account");
+const Cards = require("../models/Cards");
 
-//  @route      GET api/accounts
+//  @route      GET api/cards
 //  @desc       Get all users account details
 //  @access     Private
 router.get("/", auth, async (req, res) => {
   try {
-    const accounts = await Account.find({ user: req.user.id }).sort({
+    const cards = await Cards.find({ user: req.user.id }).sort({
       date: -1,
     });
-    res.json(accounts);
+    res.json(cards);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
   }
 });
 
-//  @route      POST api/accounts
+//  @route      POST api/cards
 //  @desc       Add new account
 //  @access     Private
 router.post(
@@ -29,10 +29,10 @@ router.post(
   [
     auth,
     [
-      check("bankName", "Bank is required").not().isEmpty(),
-      check("accountName", "Account Name is required!").not().isEmpty(),
-      check("accountNumber", "Account Number is required!").not().isEmpty(),
-      check("phone", "Phone Number is required!").not().isEmpty(),
+      check("bankName", "Bank Name is required").not().isEmpty(),
+      check("cardName", "Card Name is required!").not().isEmpty(),
+      check("cardNumber", "Card Number is required!").not().isEmpty(),
+      check("ccv", "ccv Number is required!").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -40,23 +40,23 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { bankName, accountName, accountNumber, phone, email, type } =
+    const { bankName, cardName, cardNumber, ccv, expirationDate, type } =
       req.body;
 
     try {
-      const newAccount = new Account({
+      const newCard = new Card({
         bankName,
-        accountName,
-        accountNumber,
-        phone,
+        cardName,
+        cardNumber,
+        ccv,
         type,
-        email,
+        expirationDate,
         user: req.user.id,
       });
 
-      const account = await newAccount.save();
+      const card = await newCard.save();
 
-      res.json(account);
+      res.json(card);
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server Error");
@@ -68,14 +68,14 @@ router.post(
 //  @desc       Update account
 //  @access     Private
 router.put("/:id", (req, res) => {
-  res.send("Update account");
+  res.send("Update card");
 });
 
 //  @route      DELETE api/accounts/:id
 //  @desc       Delete account
 //  @access     Private
 router.delete("/", (req, res) => {
-  res.send("Delete account");
+  res.send("Delete card");
 });
 
 module.exports = router;

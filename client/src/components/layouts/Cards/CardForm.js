@@ -32,8 +32,7 @@ const CardForm = () => {
 
   const { bankName, cardName, cardNumber, ccv, expirationDate, type } = card;
 
-  const onChange = (e) =>
-    setCard({ ...card, [e.target.name]: e.target.value });
+  const onChange = (e) => setCard({ ...card, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +40,7 @@ const CardForm = () => {
       addCard(card);
     } else {
       updateCard(card);
+
     }
     clearAll();
   };
@@ -51,9 +51,7 @@ const CardForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className="text-primary">
-        {current ? "Edit Card" : "Add Card"}
-      </h2>
+      <h2 className="text-primary">{current ? "Edit Card" : "Add Card"}</h2>
       <label>Bank Name</label>
       <input
         type="text"
@@ -88,7 +86,12 @@ const CardForm = () => {
         onChange={onChange}
       />
       <label>Expiration Date</label>
-      <input type="date" name="email" value={expirationDate} onChange={onChange} />
+      <input
+        type="date"
+        name="expirationDate"
+        value={expirationDate}
+        onChange={onChange}
+      />
       <h5>Card Type</h5>
       <input
         type="radio"

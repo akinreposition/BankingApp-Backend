@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require("./config/db");
+// const connectDB = require("./config/db");
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.get("/", (req, res) =>
 // Define Routes
 app.use("/api/users", require("./routes/users"));
 app.use("/api/auth", require("./routes/auth"));
-app.use("/api/accounts", require("./routes/accounts"));
+app.use("/api/cards", require("./routes/cards"));
 
 const PORT = process.env.PORT || 2520;
 

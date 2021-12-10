@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AccountSchema = mongoose.Schema({
+const CardSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
@@ -9,24 +9,24 @@ const AccountSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  accountName: {
+  cardName: {
     type: String,
     required: true,
   },
-  accountNumber: {
+  cardNumber: {
     type: String,
     required: true,
   },
   type: {
     type: String,
-    default: "Savings",
+    default: "Master",
   },
-  phone: {
+  ccv: {
     type: String,
     required: true,
   },
-  email: {
-    type: String,
+  expirationDate: {
+    type: Date,
   },
   date: {
     type: Date,
@@ -34,4 +34,4 @@ const AccountSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("account", AccountSchema);
+module.exports = mongoose.model("cards", CardSchema);

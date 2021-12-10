@@ -7,7 +7,7 @@ const CardItem = ({ card }) => {
     const cardContext = useContext(CardContext);
 
     const { deleteCard, setCurrent, clearCurrent } = cardContext;
-    const { id, cardName, cardNumber, expirationDate, ccv, type } = card;
+    const { id, bankName, cardName, cardNumber, expirationDate, ccv, type } = card;
 
     const onDelete = () => {
         deleteCard(id);
@@ -16,7 +16,7 @@ const CardItem = ({ card }) => {
     return (
         <div className="card bg-light">
             <h3 className="test-primary text-left">
-                {cardName}{' '} 
+                {bankName}{' '} 
                 <span 
                 style={{ float: 'right'}}
                 className={'badge ' + (type === 'Master card' ? 
