@@ -1,7 +1,7 @@
 {
   "name": "accountKeeper",
   "version": "1.0.0",
-  "description": "Account Manager App",
+  "description": "Credit card Manager App",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
