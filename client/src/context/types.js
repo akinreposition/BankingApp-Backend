@@ -1,3 +1,5 @@
+export const GET_CARDS = "GET_CARDS";
+export const CLEAR_CARDS = "CLEAR_CARDS";
 export const ADD_CARD = "ADD_CARD";
 export const DELETE_CARD = "DELETE_CARD";
 export const SET_CURRENT = "SET_CURRENT";
@@ -5,6 +7,7 @@ export const CLEAR_CURRENT = "CLEAR_CURRENT";
 export const UPDATE_CARD = "UPDATE_CARD";
 export const FILTER_CARDS = "FILTER_CARDS";
 export const CLEAR_FILTER = "CLEAR_FILTER";
+export const CARD_ERROR = "CARD_ERROR";
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";

@@ -3,14 +3,19 @@ import React, { Fragment, useContext } from 'react'
 import PropTypes from 'prop-types';
 import{ Link } from 'react-router-dom';
 import AuthContext from '../../../context/auth/authContext'
+import CardContext from '../../../context/cards/cardContext'
 
 const Navbar = ({ title, icon }) => {
     const authContext = useContext(AuthContext);
+    const cardContext = useContext(CardContext);
 
     const { isAuthenticated, logout, user } = authContext;
+    const { clearCards } = cardContext;
     const handleLogout = () => {
         logout();
-    }
+        clearCards();
+    }; 
+        
     const authLinks = (
         <Fragment>
             <li>Hello { user && user.name }</li>

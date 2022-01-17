@@ -1,8 +1,10 @@
 import React, { useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
+import axios from 'axios';
+// import { v4 as uuidv4 } from "uuid";
 import CardContext from "./cardContext";
 import { cardReducer } from "./CardReducer";
 import {
+  GET_CARDS,
   ADD_CARD,
   DELETE_CARD,
   SET_CURRENT,
@@ -10,56 +12,105 @@ import {
   UPDATE_CARD,
   FILTER_CARDS,
   CLEAR_FILTER,
+  CLEAR_CARDS,
+  CARD_ERROR
 } from "../types";
-import cardContext from "./cardContext";
+
 
 const CardState = (props) => {
   const initialState = {
-    cards: [
-      {
-        id: 1,
-        bankName: "FirstBank Nigeria",
-        cardName: "akin odeku",
-        cardNumber: "0123-4567-8910-2345",
-        ccv: "111",
-        expirationDate: "01-01-22",
-        type: "Master Card",
-      },
-      {
-        id: 2,
-        bankName: "Union Bank Nigeria",
-        cardName: "Teju sanya",
-        cardNumber: "0123-4567-8910-2345",
-        ccv: "222",
-        expirationDate: "01-02-22",
-        type: "Visa Card",
-      },
-      {
-        id: 3,
-        cardName: "Sam Smith",
-        cardNumber: "0123-7654-0189-2345",
-        ccv: "333",
-        expirationDate: "01-03-22",
-        type: "Debit Card",
-      },
-    ],
+    cards: null,
     current: null,
     filtered: null,
+    error: null
   };
 
   const [state, dispatch] = useReducer(cardReducer, initialState);
 
+  //  Get Cards
+  const getCards = async () => {
+    try {
+      const res = await axios.get('/api/cards',);
+
+      dispatch({ 
+        type: GET_CARDS, 
+        payload: res.data 
+      });
+    } catch (error) {
+      dispatch({ type: CARD_ERROR,
+      payload: error.response.msg
+    });
+    }
+    
+  };
   // Add Account
-  const addCard = (newCard) => {
-    cardContext.id = uuidv4();
-    dispatch({ type: ADD_CARD, payload: newCard });
+  const addCard = async newCard => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    try {
+      const res = await axios.post('/api/cards', newCard, config);
+
+      dispatch({ 
+        type: ADD_CARD, 
+        payload: res.data 
+      });
+    } catch (error) {
+      dispatch({ type: CARD_ERROR,
+      payload: error.response.msg
+    });
+    }
+    
+  };
+  // Update Card
+  const updateCard = async card => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    try {
+      const res = await axios.post(`/api/cards/${card._id}`, card, config);
+
+      dispatch({ 
+        type: UPDATE_CARD, 
+        payload: res.data
+      });
+    } catch (error) {
+      dispatch({ type: CARD_ERROR,
+        payload: error.response.msg
+      });
+    }
+
   };
 
   //  Delete Account
-  const deleteCard = (id) => {
-    dispatch({ type: DELETE_CARD, payload: id });
+  const deleteCard = async id => {
+    try {
+      await axios.delte(`/api/cards/${id}`);
+
+      dispatch({ 
+        type: DELETE_CARD, 
+        payload: id 
+      });
+    } catch (error) {
+      dispatch({ type: CARD_ERROR,
+      payload: error.response.msg
+    });
+    }
+
   };
 
+  //  Clear cards
+  const clearCards = () => {
+    dispatch({
+      type: CLEAR_CARDS
+    })
+  }
   // Set current Account
   const setCurrent = (newCard) => {
     dispatch({ type: SET_CURRENT, payload: newCard });
@@ -70,10 +121,7 @@ const CardState = (props) => {
     dispatch({ type: CLEAR_CURRENT });
   };
 
-  // Update Card
-  const updateCard = (newCard) => {
-    dispatch({ type: UPDATE_CARD, payload: newCard });
-  };
+  
   // Filter Card
   const filterCards = (text) => {
     dispatch({ type: FILTER_CARDS, payload: text });
@@ -90,8 +138,11 @@ const CardState = (props) => {
         cards: state.cards,
         current: state.current,
         filtered: state.filtered,
+        error: state.error,
+        getCards,
         addCard,
         deleteCard,
+        clearCards,
         setCurrent,
         clearCurrent,
         updateCard,

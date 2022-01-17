@@ -21,10 +21,6 @@ const CardSchema = mongoose.Schema({
     type: String,
     default: "Master",
   },
-  ccv: {
-    type: String,
-    required: true,
-  },
   expirationDate: {
     type: Date,
   },

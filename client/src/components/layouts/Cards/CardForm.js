@@ -14,7 +14,6 @@ const CardForm = () => {
         bankName: " ",
         cardName: " ",
         cardNumber: " ",
-        ccv: " ",
         expirationDate: " ",
         type: "visa",
       });
@@ -25,12 +24,11 @@ const CardForm = () => {
     bankName: " ",
     cardName: " ",
     cardNumber: " ",
-    ccv: " ",
     expirationDate: " ",
     type: "visa",
   });
 
-  const { bankName, cardName, cardNumber, ccv, expirationDate, type } = card;
+  const { bankName, cardName, cardNumber, expirationDate, type } = card;
 
   const onChange = (e) => setCard({ ...card, [e.target.name]: e.target.value });
 
@@ -76,15 +74,6 @@ const CardForm = () => {
         value={cardNumber}
         onChange={onChange}
       />
-      <label>Cvv</label>
-      <input
-        type="text"
-        placeholder="ccv"
-        required
-        name="ccv"
-        value={ccv}
-        onChange={onChange}
-      />
       <label>Expiration Date</label>
       <input
         type="date"
@@ -109,14 +98,6 @@ const CardForm = () => {
         onChange={onChange}
       />{" "}
       Master{" "}
-      {/* <input
-        type="radio"
-        name="type"
-        value="Domilicary"
-        checked={type === "Domilicary"}
-        onChange={onChange}
-      />{" "}
-      Domilicary{" "} */}
       <div>
         <input
           type="submit"

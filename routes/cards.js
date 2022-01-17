@@ -32,7 +32,7 @@ router.post(
       check("bankName", "Bank Name is required").not().isEmpty(),
       check("cardName", "Card Name is required!").not().isEmpty(),
       check("cardNumber", "Card Number is required!").not().isEmpty(),
-      check("ccv", "ccv Number is required!").not().isEmpty(),
+      // check("ccv", "ccv Number is required!").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -40,7 +40,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { bankName, cardName, cardNumber, ccv, expirationDate, type } =
+    const { bankName, cardName, cardNumber, expirationDate, type } =
       req.body;
 
     try {
@@ -48,7 +48,7 @@ router.post(
         bankName,
         cardName,
         cardNumber,
-        ccv,
+        // ccv,
         type,
         expirationDate,
         user: req.user.id,
