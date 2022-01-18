@@ -9,9 +9,9 @@ connectDB();
 //  Init Middleware
 app.use(express.json({ extended: false }));
 
-app.get("/", (req, res) =>
-  res.json({ msg: "Welcome to the Banking-Backend..." })
-);
+// app.get("/", (req, res) =>
+//   res.json({ msg: "Welcome to the Banking-Backend..." })
+// );
 
 // Define Routes
 app.use("/api/users", require("./routes/users"));
