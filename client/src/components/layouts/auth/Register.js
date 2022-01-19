@@ -45,7 +45,7 @@ const Register = (props) => {
         password: "",
         password2: "",
       });
-      console.log(name, email, password);
+      
     }
   };
   return (

@@ -38,7 +38,6 @@ const CardForm = () => {
       addCard(card);
     } else {
       updateCard(card);
-
     }
     clearAll();
   };

@@ -52,11 +52,11 @@ const CardState = (props) => {
     }
 
     try {
-      const res = await axios.post('/api/cards', newCard, config);
+      const req = await axios.post('/api/cards', newCard, config);
 
       dispatch({ 
         type: ADD_CARD, 
-        payload: res.data 
+        payload: req.data 
       });
     } catch (error) {
       dispatch({ type: CARD_ERROR,
