@@ -29,11 +29,11 @@ const App = () => {
               <div className="container">
                 <Alerts />
                 <Routes>
-                  <PrivateRoute path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
+                  <PrivateRoute path='/' element={<Home />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
-                </Routes>
+                  <Route path="/about" element={<About />} />
+               </Routes>
               </div>
             </Fragment>
           </Router>

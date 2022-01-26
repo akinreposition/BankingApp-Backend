@@ -73,7 +73,7 @@ export const cardReducer = (state, action) => {
     case CARD_ERROR:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload
       };
     default:
       return state;

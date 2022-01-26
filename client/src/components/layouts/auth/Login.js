@@ -52,9 +52,10 @@ const Login = (props) => {
       </h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="email">Email Address</label>
+          {/* <label htmlFor="email">Email Address</label> */}
           <input
-            type="email"
+            type='email'
+            placeholder="Email"
             name="email"
             value={email}
             onChange={onChange}
@@ -63,9 +64,10 @@ const Login = (props) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label> */}
           <input
-            type="password"
+            type='password'
+            placeholder="Password"
             name="password"
             value={password}
             onChange={onChange}

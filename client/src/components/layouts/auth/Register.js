@@ -24,14 +24,14 @@ const Register = (props) => {
     name: "",
     email: "",
     password: "",
-    password2: "",
+    password2: ""
   });
 
   const { name, email, password, password2 } = user;
 
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = e => {
     e.preventDefault();
     if (name === "" || email === "" || password === "") {
       setAlert("Please enter all fields", "danger");
@@ -51,54 +51,58 @@ const Register = (props) => {
   return (
     <div className="form-container">
       <h1>
-        Account <span className="text-primary">Register</span>
+        User <span className="text-primary">Register</span>
       </h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          {/* <label htmlFor='name'>Name</label> */}
           <input
-            type="text"
-            name="name"
+            type='text' 
+            name='name'
+            placeholder="Name"
             value={name}
             onChange={onChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email Address</label>
+          {/* <label htmlFor='email'>Email Address</label> */}
           <input
-            type="email"
-            name="email"
+            type='email'
+            name='email'
+            placeholder="Email"
             value={email}
             onChange={onChange}
             required
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor='password'>Password</label> */}
           <input
-            type="password"
-            name="password"
+            type='password'
+            placeholder="Password"
+            name='password'
             value={password}
             onChange={onChange}
             required
-            minLength="6"
+            minLength='6'
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Confirm Password</label>
+          {/* <label htmlFor='password2'>Confirm Password</label> */}
           <input
-            type="password"
-            name="password2"
+            type='password'
+            placeholder="Password2"
+            name='password2'
             value={password2}
             onChange={onChange}
             required
-            minLength="6"
+            minLength='6'
           />
         </div>
         <button
-          type="submit"
-          value="Register"
+          type='submit'
+          value='Register'
           className="btn btn-primary btn-block"
         >
           {" "}

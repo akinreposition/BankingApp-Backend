@@ -49,14 +49,14 @@ const CardState = (props) => {
       headers: {
         'Content-Type': 'application/json'
       }
-    }
+    };
 
     try {
-      const req = await axios.post('/api/cards', newCard, config);
+      const res = await axios.post('/api/cards', newCard, config);
 
       dispatch({ 
         type: ADD_CARD, 
-        payload: req.data 
+        payload: res.data 
       });
     } catch (error) {
       dispatch({ type: CARD_ERROR,
