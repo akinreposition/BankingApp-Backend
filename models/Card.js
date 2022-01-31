@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const CardSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
+    ref: 'users',
   },
   bankName: {
     type: String,
@@ -30,4 +30,4 @@ const CardSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("cards", CardSchema);
+module.exports = mongoose.model('card', CardSchema);

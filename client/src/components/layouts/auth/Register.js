@@ -1,20 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import AlertContext from "../../../context/alert/alertContext";
 import AuthContext from "../../../context/auth/authContext";
 
 const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { setAlert } = alertContext;
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/");
+      props.history.push('/');
     }
-    if (error === "User already exists") {
-      setAlert(error, "danger");
+    if (error === 'User already exists') {
+      setAlert(error, 'danger');
       clearErrors();
     }
     // eslint-disable-next-line
@@ -34,9 +36,9 @@ const Register = (props) => {
   const onSubmit = e => {
     e.preventDefault();
     if (name === "" || email === "" || password === "") {
-      setAlert("Please enter all fields", "danger");
+      setAlert('Please enter all fields', 'danger');
     } else if (password !== password2) {
-      setAlert("Passwords do not match", "danger");
+      setAlert('Passwords do not match', 'danger');
     } else {
       register({ name, email, password });
       setUser({
@@ -45,7 +47,9 @@ const Register = (props) => {
         password: "",
         password2: "",
       });
-      
+      setTimeout(() => {
+        navigate.push('/login')
+      }, 5000);
     }
   };
   return (

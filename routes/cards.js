@@ -1,17 +1,17 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const auth = require("../middleware/auth");
-const { check, validationResult } = require("express-validator");
+const auth = require('../middleware/auth');
+const { check, validationResult } = require('express-validator');
 
-const User = require("../models/User");
-const Cards = require("../models/Cards");
+const User = require('../models/User');
+const Card = require('../models/Card');
 
 //  @route      GET api/cards
 //  @desc       Get all users account details
 //  @access     Private
-router.get("/", auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const cards = await Cards.find({ user: req.user.id }).sort({
+    const cards = await Card.find({ user: req.user.id }).sort({
       date: -1,
     });
     res.json(cards);
@@ -25,15 +25,14 @@ router.get("/", auth, async (req, res) => {
 //  @desc       Add new account
 //  @access     Private
 router.post(
-  "/",
+  '/',
   [
     auth,
     [
-      check("bankName", "Bank Name is required").not().isEmpty(),
-      check("cardName", "Card Name is required!").not().isEmpty(),
-      check("cardNumber", "Card Number is required!").not().isEmpty(),
-      // check("ccv", "ccv Number is required!").not().isEmpty(),
-    ],
+      check('bankName', 'Bank Name is required').not().isEmpty(),
+      check('cardName', 'Card Name is required!').not().isEmpty(),
+      check('cardNumber', 'Card Number is required!').not().isEmpty(),
+  ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -48,7 +47,6 @@ router.post(
         bankName,
         cardName,
         cardNumber,
-        // ccv,
         type,
         expirationDate,
         user: req.user.id,
@@ -67,14 +65,14 @@ router.post(
 //  @route      PUT api/accounts/:id
 //  @desc       Update account
 //  @access     Private
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   res.send("Update card");
 });
 
 //  @route      DELETE api/accounts/:id
 //  @desc       Delete account
 //  @access     Private
-router.delete("/", (req, res) => {
+router.delete('/', (req, res) => {
   res.send("Delete card");
 });
 
