@@ -43,11 +43,11 @@ const CardState = (props) => {
     }
     
   };
-  // Add Account
+  // Add New Card
   const addCard = async newCard => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'text/json'
       }
     };
 

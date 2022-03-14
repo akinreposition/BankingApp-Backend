@@ -54,7 +54,7 @@ Navbar.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.string,
 }
- Navbar.defaultProps = {
+Navbar.defaultProps = {
      title: 'Card Manager',
      icon: 'fas fa-id-card-alt'
  }

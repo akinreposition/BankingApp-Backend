@@ -1,12 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
 import AlertContext from "../../../context/alert/alertContext";
 import AuthContext from "../../../context/auth/authContext";
 
 const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const { setAlert } = alertContext;
   const { register, error, clearErrors, isAuthenticated } = authContext;
@@ -47,9 +45,9 @@ const Register = (props) => {
         password: "",
         password2: "",
       });
-      setTimeout(() => {
-        navigate.push('/login')
-      }, 5000);
+      // setTimeout(() => {
+      //   navigate.push('/login')
+      // }, 5000);
     }
   };
   return (

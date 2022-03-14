@@ -11,7 +11,8 @@ const Card = require('../models/Card');
 //  @access     Private
 router.get('/', auth, async (req, res) => {
   try {
-    const cards = await Card.find({ user: req.user.id }).sort({
+    const user = await User.findById({ user: req.user.id })
+    const cards = await Card.find(user).sort({
       date: -1,
     });
     res.json(cards);
