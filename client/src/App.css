@@ -3,7 +3,6 @@
 /* Global Styles */
 :root {
   --primary-color: #003699;
-  --primary-color1: #f500a375;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -72,7 +71,7 @@ img {
 }
 
 .text-primary {
-  color: var(--primary-color);
+  color: var( --success-color);
 }
 
 .text-dark {
@@ -236,7 +235,7 @@ img {
 .bg-primary,
 .badge-primary,
 .alert-primary {
-  background: var(--primary-color);
+  background: var( --success-color);
   color: #fff;
 }
 

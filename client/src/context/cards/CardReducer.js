@@ -1,54 +1,80 @@
 import {
+  GET_CARDS,
   ADD_CARD,
   DELETE_CARD,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_CARD,
   CLEAR_FILTER,
+  // CLEAR_CARDS,
   FILTER_CARDS,
+  CARD_ERROR,
+  CLEAR_CARDS,
 } from "../types";
 
 export const cardReducer = (state, action) => {
   switch (action.type) {
+    case GET_CARDS:
+      return {
+        ...state,
+        cards: action.payload,
+        loading: false,
+      };
     case ADD_CARD:
       return {
         ...state,
-        cards: [...state.cards, action.payload],
+        cards: [action.payload, ...state.cards],
+        loading: false,
       };
     case DELETE_CARD:
-          return{
-              ...state,
-              cards: state.cards.filter(card => card.id !== action.payload)
-          };
+      return {
+        ...state,
+        cards: state.cards.filter((card) => card._id !== action.payload),
+      };
+    case CLEAR_CARDS:
+      return {
+        ...state,
+        cards: null,
+        filtered: null,
+        error: null,
+        current: null,
+      };
     case SET_CURRENT:
-        return {
-            ...state,
-            current: action.payload
-        }
+      return {
+        ...state,
+        current: action.payload,
+      };
     case CLEAR_CURRENT:
-        return {
-            ...state,
-            current: null
-        }
+      return {
+        ...state,
+        current: null,
+      };
     case UPDATE_CARD:
-        return {
-            ...state,
-            cards: state.cards.map(card => 
-                card.id === action.payload.id ? action.payload : card )
-        }
+      return {
+        ...state,
+        cards: state.cards.map((card) =>
+          card._id === action.payload._id ? action.payload : card
+        ),
+        loading: false,
+      };
     case FILTER_CARDS:
-        return {
-          ...state,
-          filtered: state.cards.filter(card => {
-            const regex = new RegExp(`${action.payload}`, 'gi');
-            return card.cardName.match(regex) || card.accountNumber.match(regex);
-          })
-        }
+      return {
+        ...state,
+        filtered: state.cards.filter((card) => {
+          const regex = new RegExp(`${action.payload}`, "gi");
+          return card.cardName.match(regex) || card.accountNumber.match(regex);
+        }),
+      };
     case CLEAR_FILTER:
-          return {
-              ...state,
-              filtered: null
-          }
+      return {
+        ...state,
+        filtered: null,
+      };
+    case CARD_ERROR:
+      return {
+        ...state,
+        error: action.payload
+      };
     default:
       return state;
   }

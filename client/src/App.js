@@ -6,6 +6,7 @@ import About from "./components/pages/About";
 import Register from "./components/layouts/auth/Register";
 import Login from "./components/layouts/auth/Login";
 import Alerts from "./components/layouts/alerts/Alerts";
+import PrivateRoute from "./routes/PrivateRoute";
 
 import CardState from "./context/cards/CardState";
 import AuthState from "./context/auth/AuthState";
@@ -28,11 +29,11 @@ const App = () => {
               <div className="container">
                 <Alerts />
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
+                  <PrivateRoute path='/' element={<Home />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
-                </Routes>
+                  <Route path="/about" element={<About />} />
+               </Routes>
               </div>
             </Fragment>
           </Router>

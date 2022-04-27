@@ -11,26 +11,24 @@ const CardForm = () => {
       setCard(current);
     } else {
       setCard({
-        bankName: " ",
-        cardName: " ",
-        cardNumber: " ",
-        ccv: " ",
-        expirationDate: " ",
+        bankName: "",
+        cardName: "",
+        cardNumber: "",
+        expirationDate: "",
         type: "visa",
       });
     }
   }, [cardContext, current]);
 
   const [card, setCard] = useState({
-    bankName: " ",
-    cardName: " ",
-    cardNumber: " ",
-    ccv: " ",
-    expirationDate: " ",
+    bankName: "",
+    cardName: "",
+    cardNumber: "",
+    expirationDate: "",
     type: "visa",
   });
 
-  const { bankName, cardName, cardNumber, ccv, expirationDate, type } = card;
+  const { bankName, cardName, cardNumber, expirationDate, type } = card;
 
   const onChange = (e) => setCard({ ...card, [e.target.name]: e.target.value });
 
@@ -40,7 +38,6 @@ const CardForm = () => {
       addCard(card);
     } else {
       updateCard(card);
-
     }
     clearAll();
   };
@@ -52,49 +49,44 @@ const CardForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <h2 className="text-primary">{current ? "Edit Card" : "Add Card"}</h2>
-      <label>Bank Name</label>
+      {/* <label>Bank Name</label> */}
       <input
-        type="text"
+        type='text'
         required
-        name="bankName"
+        placeholder="Bank Name"
+        name='bankName'
         value={bankName}
         onChange={onChange}
       />
-      <label>Card Name</label>
+      {/* <label>Card Name</label> */}
       <input
-        type="text"
+        type='text'
         required
-        name="cardName"
+        placeholder="Card Name"
+        name='cardName'
         value={cardName}
         onChange={onChange}
       />
-      <label>Card Number</label>
+      {/* <label>Card Number</label> */}
       <input
-        type="text"
+        type='text'
         required
+        placeholder="Card Number"
         name="cardNumber"
         value={cardNumber}
         onChange={onChange}
       />
-      <label>Cvv</label>
+      {/* <label>Expiration Date</label> */}
       <input
-        type="text"
-        placeholder="ccv"
-        required
-        name="ccv"
-        value={ccv}
-        onChange={onChange}
-      />
-      <label>Expiration Date</label>
-      <input
-        type="date"
-        name="expirationDate"
+        type='text'
+        placeholder="Date"
+        name='expirationDate'
         value={expirationDate}
         onChange={onChange}
       />
       <h5>Card Type</h5>
       <input
-        type="radio"
+        type='radio'
         name="type"
         value="visa"
         checked={type === "visa"}
@@ -102,24 +94,16 @@ const CardForm = () => {
       />{" "}
       Visa{" "}
       <input
-        type="radio"
+        type='radio'
         name="type"
         value="master"
         checked={type === "master"}
         onChange={onChange}
       />{" "}
       Master{" "}
-      {/* <input
-        type="radio"
-        name="type"
-        value="Domilicary"
-        checked={type === "Domilicary"}
-        onChange={onChange}
-      />{" "}
-      Domilicary{" "} */}
       <div>
         <input
-          type="submit"
+          type='submit'
           value={current ? "Update Card" : "Add Card"}
           className="btn btn-primary btn-block"
         />

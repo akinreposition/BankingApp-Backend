@@ -12,14 +12,15 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   CLEAR_ERRORS,
+  SETLOADING,
 } from "../types";
-// import authContext from "./authContext";
 
 const AuthState = (props) => {
   const initialState = {
     token: localStorage.getItem("token"),
     isAuthenticated: null,
-    loading: true,
+    loading: false,
+    user: null,
     error: null,
   };
 
@@ -70,11 +71,14 @@ const AuthState = (props) => {
   // Login User
   const loginUser = async (formData) => {
     const config = {
+      method: "POST",
+      body: JSON.stringify(formData),
       headers: {
         "Content-Type": "application/json",
       },
     };
     try {
+      setLoading();
       const res = await axios.post("/api/auth", formData, config);
 
       dispatch({
@@ -92,10 +96,13 @@ const AuthState = (props) => {
   };
 
   // Logout
-  const logout = () => console.log("logout");
+  const logout = () => dispatch({ type: LOGOUT });
 
   // Clear Errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
+
+  //  Set Loading
+  const setLoading = () => dispatch({ type: SETLOADING });
 
   return (
     <AuthContext.Provider
@@ -110,6 +117,7 @@ const AuthState = (props) => {
         loginUser,
         logout,
         clearErrors,
+        setLoading,
       }}
     >
       {props.children}
